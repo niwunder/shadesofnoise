@@ -2,17 +2,20 @@
 ## Beautify the Data set ##
 ###########################
 
+library(tidyverse)
 
+
+# load data ---------------------------------------------------------------
+
+son <- read.csv("/Users/shanti/Documents/GitHub/uniti-whos-using-the-apps/data/son.csv")
 
 ## ----------------------------------------------------------------------------
 #add delta_sound rating to data frame
 #negative delta means pre_loudness > post_loudness -> tinnitus reduction
 
 son <- rename(son, "post_loudness" = sound_rating)
-post_loudness_true <- son$pre_loudness - (son$post_loudness - 50)
-delta_sound_rating <- post_loudness_true - son$pre_loudness
-
-son$delta_sound_rating <- delta_sound_rating
+son$post_loudness_true <- son$pre_loudness - (son$post_loudness - 50)
+son$delta_sound_rating <- post_loudness_true - son$pre_loudness
 
 range(son$delta_sound_rating, na.rm = T)
 
@@ -31,6 +34,7 @@ son$headphones <- as.logical(son$headphones)
 son$favourite[son$favourite == "nan" | son$favourite == "NaN"] <- NA
 son$favourite[son$favourite == "False" | son$favourite == "0.0"] <- F
 son$favourite[son$favourite == "1.0" | son$favourite == "True"] <- T
+son$favourite <- as.logical(son$favourite)
 
 
 ## ----------------------------------------------------------------------------
@@ -93,8 +97,6 @@ for (i in 1:length(son$sound)){
 
 ## ----------------------------------------------------------------------------
 #create df son_gr that groups son by 64 sounds
-
-son$favourite <- as.logical(son$favourite)
 
 son_gr <- son %>%
   group_by(sound) %>%
