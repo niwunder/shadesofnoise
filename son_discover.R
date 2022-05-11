@@ -61,7 +61,7 @@ for (i in 1:length(son$sound)){
     son$sound_mechanism[i] <- 0
   }
 }
-son$sound_mechanism <- as.factor(son$sound_mechanism)
+#son$sound_mechanism <- as.factor(son$sound_mechanism)
 
 # for (i in 1:length(son_gr$sound)){
 #   if (son_gr$sound[i] %in% sounds_masking) {
@@ -87,7 +87,7 @@ for (i in 1:length(son$sound)){
     son$sound_origin[i] <- 0
   }
 }
-son$sound_origin <- as.factor(son$sound_origin)
+#son$sound_origin <- as.factor(son$sound_origin)
 
 
 ## ----------------------------------------------------------------------------
@@ -105,8 +105,8 @@ son_gr <- son %>%
     mean_listen_time = mean(listen_time), #not correct, because there are negative values
     mean_longest_listen_time = mean(longest_listen_time),
     mean_post_loudness = mean(post_loudness, na.rm = T),
-    sound_mechanism = mean(sound_mechanism, na.rm = T),
-    sound_origin = mean(sound_origin, na.rm = T),
+    sound_mechanism = mean(sound_mechanism, na.rm = T), #as.factor?
+    sound_origin = mean(sound_origin, na.rm = T), #as.factor?
     mean_delta_sound_rating = mean(delta_sound_rating, na.rm = T)
   )
 
