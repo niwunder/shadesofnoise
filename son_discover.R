@@ -61,7 +61,7 @@ for (i in 1:length(son$sound)){
     son$sound_mechanism[i] <- 0
   }
 }
-son$sound_mechanism
+son$sound_mechanism <- as.factor(son$sound_mechanism)
 
 # for (i in 1:length(son_gr$sound)){
 #   if (son_gr$sound[i] %in% sounds_masking) {
@@ -87,6 +87,7 @@ for (i in 1:length(son$sound)){
     son$sound_origin[i] <- 0
   }
 }
+son$sound_origin <- as.factor(son$sound_origin)
 
 
 ## ----------------------------------------------------------------------------
